@@ -1,0 +1,118 @@
+Options -MultiViews -Indexes
+DirectoryIndex index.php index.html
+
+# =========================================================
+# WordPress + React SPA — cPanel / LiteSpeed
+# =========================================================
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # ── 1. Force HTTPS ────────────────────────────────────────────────
+  RewriteCond %{HTTPS} off
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # ── 2. wp-admin: rota explícita para o PHP do WordPress ──────────
+  RewriteRule ^wp-admin/?$              /wp-admin/index.php [L,QSA]
+  RewriteRule ^wp-admin/(.+\.php)$      /wp-admin/$1        [L,QSA]
+  RewriteRule ^wp-admin/(.+)$           /wp-admin/$1        [L]
+
+  # ── 3. WordPress core files ───────────────────────────────────────
+  RewriteRule ^wp-login\.php            - [L]
+  RewriteRule ^wp-cron\.php             - [L]
+  RewriteRule ^wp-signup\.php           - [L]
+  RewriteRule ^xmlrpc\.php              - [L]
+  RewriteRule ^wp-content/(.*)$         /wp-content/$1      [L]
+  RewriteRule ^wp-includes/(.*)$        /wp-includes/$1     [L]
+
+  # ── 4. WordPress REST API → index.php ────────────────────────────
+  RewriteRule ^wp-json(/.*)?$           /index.php          [L,QSA]
+
+  # ── 5. API Node.js — não reescreve ───────────────────────────────
+  RewriteRule ^api/                     -                   [L]
+
+  # ── 6. AVIF — serve .avif se browser aceitar e arquivo existir ──────
+  RewriteCond %{HTTP_ACCEPT} image/avif
+  RewriteCond %{REQUEST_FILENAME} (.+)\.(png|jpe?g)$
+  RewriteCond %1.avif -f
+  RewriteRule .+ %1.avif [T=image/avif,L,E=avif:1]
+
+  # ── 7. WebP — serve .webp se browser aceitar e arquivo existir ──────
+  RewriteCond %{ENV:avif} !1
+  RewriteCond %{HTTP_ACCEPT} image/webp
+  RewriteCond %{REQUEST_FILENAME} (.+)\.(png|jpe?g)$
+  RewriteCond %1.webp -f
+  RewriteRule .+ %1.webp [T=image/webp,L]
+
+  # ── 8. Arquivos estáticos existentes — servir direto ─────────────
+  RewriteCond %{REQUEST_FILENAME} -f
+  RewriteRule ^                         -                   [L]
+
+  # ── 9. React SPA — tudo mais → index.html ────────────────────────
+  RewriteRule ^                         /index.html         [L]
+</IfModule>
+
+<IfModule !mod_rewrite.c>
+  ErrorDocument 404 /index.html
+</IfModule>
+
+# =========================================================
+# Cache de assets estáticos
+# =========================================================
+<IfModule mod_headers.c>
+  <FilesMatch "\.(js|css|woff2?|ttf|eot|webp|jpg|jpeg|png|gif|svg|ico|avif)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.(html)$">
+    Header set Cache-Control "public, max-age=60, stale-while-revalidate=300, stale-if-error=86400"
+    Header unset Pragma
+    Header set X-Content-Type-Options "nosniff"
+  </FilesMatch>
+  <FilesMatch "\.(json)$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+    Header set Pragma "no-cache"
+    Header set Expires "0"
+  </FilesMatch>
+</IfModule>
+
+# =========================================================
+# LiteSpeed — Cache HTML por 60s (reduz TTFB repetido)
+# =========================================================
+<IfModule LiteSpeed>
+  CacheLookup on
+  RewriteRule .* - [E=cache-control:max-age=60]
+</IfModule>
+
+# =========================================================
+# Keep-Alive — reutiliza conexão TCP (melhora TTFB)
+# =========================================================
+<IfModule mod_headers.c>
+  Header set Connection keep-alive
+</IfModule>
+
+# =========================================================
+# Tipos MIME
+# =========================================================
+<IfModule mod_mime.c>
+  AddType application/javascript .js .mjs
+  AddType text/css .css
+  AddType image/webp .webp
+  AddType image/avif .avif
+  AddType image/svg+xml .svg
+  AddType application/manifest+json .json
+  AddType font/woff2 .woff2
+</IfModule>
+
+# Vary: Accept — necessário para CDN não confundir AVIF/WebP com PNG/JPEG
+<FilesMatch "\.(png|jpe?g)$">
+  <IfModule mod_headers.c>
+    Header append Vary Accept
+  </IfModule>
+</FilesMatch>
+
+# =========================================================
+# Compressão
+# =========================================================
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml
+</IfModule>

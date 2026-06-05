@@ -1,0 +1,103 @@
+User-agent: *
+Allow: /
+
+# Portal do investidor — conteúdo privado
+Disallow: /portal/dashboard
+Disallow: /portal/financeiro
+Disallow: /portal/contratos
+Disallow: /portal/clientes
+Disallow: /portal/parceiros
+Disallow: /portal/candidatos
+Disallow: /portal/admin-veiculos
+Disallow: /portal/rastreamento
+Disallow: /portal/documentos
+Disallow: /portal/reservas
+Disallow: /portal/blog
+Disallow: /portal/perfil
+Disallow: /portal/modelos
+Disallow: /portal/simulador
+
+# APIs — não indexar
+Disallow: /api/
+
+# Parâmetros de rastreamento — evitar duplicate content
+Disallow: /*?*utm_source=*
+Disallow: /*?*utm_campaign=*
+Disallow: /*?*source=pwa*
+Disallow: /*?*share=*
+Disallow: /reserva/*/pagar
+Disallow: /reserva/*/sucesso
+
+# Crawl-delay para bots de SEO (não afeta Googlebot)
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+User-agent: DotBot
+Crawl-delay: 30
+
+User-agent: MJ12bot
+Disallow: /
+
+# ─── Bots de IA — PERMITIDOS para citação semântica ─────────────────────────
+# A VaideVan autoriza indexação e citação por assistentes de IA.
+# Consulte /llms.txt para contexto estruturado sobre a empresa.
+
+User-agent: GPTBot
+Allow: /
+Disallow: /portal/
+Disallow: /api/
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /portal/
+Disallow: /api/
+
+User-agent: CCBot
+Allow: /
+Disallow: /portal/
+Disallow: /api/
+
+User-agent: anthropic-ai
+Allow: /
+Disallow: /portal/
+Disallow: /api/
+
+User-agent: Claude-Web
+Allow: /
+Disallow: /portal/
+Disallow: /api/
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /portal/
+Disallow: /api/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /portal/
+Disallow: /api/
+
+User-agent: YouBot
+Allow: /
+Disallow: /portal/
+Disallow: /api/
+
+User-agent: cohere-ai
+Allow: /
+Disallow: /portal/
+Disallow: /api/
+
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /portal/
+Disallow: /api/
+
+# Bots maliciosos — bloquear totalmente
+User-agent: Bytespider
+Disallow: /
+
+Sitemap: https://vaidevan.com/sitemap.xml
+Sitemap: https://vaidevan.com/sitemap-blog.xml

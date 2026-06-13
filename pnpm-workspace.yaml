@@ -4,6 +4,10 @@ packages:
   - lib/integrations/*
   - scripts
 
+allowBuilds:
+  esbuild: false
+  sharp: false
+
 autoInstallPeers: false
 
 catalog:
@@ -35,11 +39,7 @@ minimumReleaseAgeExclude:
   - '@replit/*'
   - stripe-replit-sync
 
-onlyBuiltDependencies:
-  - '@swc/core'
-  - esbuild
-  - msw
-  - unrs-resolver
+onlyBuiltDependencies: esbuild,sharp
 
 overrides:
   '@esbuild-kit/esm-loader': npm:tsx@^4.21.0

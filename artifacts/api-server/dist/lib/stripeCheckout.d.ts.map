@@ -1,0 +1,1 @@
+{"version":3,"file":"stripeCheckout.d.ts","sourceRoot":"","sources":["../../src/lib/stripeCheckout.ts"],"names":[],"mappings":"AAEA,MAAM,WAAW,mBAAmB;IAClC,aAAa,EAAE,MAAM,CAAC;IACtB,WAAW,EAAE,MAAM,CAAC;IACpB,SAAS,EAAE,MAAM,CAAC;IAClB,aAAa,EAAE,MAAM,CAAC;IACtB,UAAU,EAAE,MAAM,CAAC;IACnB,SAAS,EAAE,MAAM,CAAC;CACnB;AAED,wBAAsB,2BAA2B,CAAC,KAAK,EAAE,mBAAmB;;;GAoC3E"}

@@ -1,0 +1,1 @@
+{"version":3,"file":"soro_scheduler.d.ts","sourceRoot":"","sources":["../src/soro_scheduler.ts"],"names":[],"mappings":"AAkTA,wBAAsB,UAAU,CAC9B,YAAY,CAAC,EAAE,MAAM,EACrB,aAAa,CAAC,EAAE,MAAM,GACrB,OAAO,CAAC;IAAE,IAAI,EAAE,MAAM,CAAC;IAAC,KAAK,EAAE,MAAM,CAAC;IAAC,OAAO,EAAE,MAAM,CAAC;IAAC,KAAK,CAAC,EAAE,MAAM,CAAA;CAAE,CAAC,CAyH3E;AAED,wBAAgB,kBAAkB,IAAI,IAAI,CAwCzC"}

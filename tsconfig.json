@@ -1,0 +1,12 @@
+{
+  "files": [],
+  "references": [
+    { "path": "lib/db" },
+    { "path": "lib/api-zod" },
+    { "path": "lib/api-client-react" },
+    { "path": "lib/object-storage-web" },
+    { "path": "lib/integrations-anthropic-ai" },
+    { "path": "artifacts/vaidevan" },
+    { "path": "artifacts/api-server" }
+  ]
+}

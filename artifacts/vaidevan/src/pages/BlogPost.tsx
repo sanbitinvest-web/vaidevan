@@ -86,9 +86,10 @@ export default function BlogPost() {
   const prevPost = currentIndex > 0 ? blogPosts[currentIndex - 1] : null;
   const nextPost = currentIndex < blogPosts.length - 1 ? blogPosts[currentIndex + 1] : null;
 
-  const metaDesc = post.excerpt.length > 155
-    ? post.excerpt.substring(0, 152) + "..."
-    : post.excerpt;
+  const plainExcerpt = post.excerpt.replace(/<[^>]*>/g, '').replace(/&[^;]+;/g, ' ').trim();
+  const metaDesc = plainExcerpt.length > 155
+    ? plainExcerpt.substring(0, 152) + "..."
+    : plainExcerpt;
 
   return (
     <div className="min-h-screen bg-background text-foreground">

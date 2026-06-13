@@ -533,44 +533,7 @@ export default function Home() {
               {"@type": "City", "name": "Santos"},
               {"@type": "City", "name": "Guarulhos"}
             ]
-          },
-          "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "5.0",
-            "reviewCount": "500",
-            "bestRating": "5",
-            "worstRating": "1"
-          },
-          "review": [
-            {
-              "@type": "Review",
-              "author": { "@type": "Person", "name": "Ricardo Almeida" },
-              "datePublished": "2026-03-01",
-              "reviewBody": "Usamos a VaideVan para transfer diário de executivos do Itaim para o Aeroporto de Congonhas. Pontualidade impecável, vans higienizadas e motoristas uniformizados.",
-              "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" }
-            },
-            {
-              "@type": "Review",
-              "author": { "@type": "Person", "name": "Fernanda Souza" },
-              "datePublished": "2026-02-01",
-              "reviewBody": "Contratei a VaideVan para o transfer de toda a equipe no evento anual da empresa. Coordenação perfeita, veículos premium e motorista extremamente atencioso. Economizamos 40% em relação a outras opções.",
-              "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" }
-            },
-            {
-              "@type": "Review",
-              "author": { "@type": "Person", "name": "Carlos Mendes" },
-              "datePublished": "2026-01-01",
-              "reviewBody": "Investi na Cota Executiva há 18 meses e o retorno superou as expectativas. A gestão é transparente, recebo relatórios mensais detalhados e o portal do investidor é excelente.",
-              "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" }
-            },
-            {
-              "@type": "Review",
-              "author": { "@type": "Person", "name": "Ana Paula Ribeiro" },
-              "datePublished": "2025-08-01",
-              "reviewBody": "Já usei dezenas de serviços de transfer em São Paulo. A VaideVan é outro nível. Van Mercedes Sprinter impecável, motorista chegou 20 minutos antes, água gelada e carregador disponíveis.",
-              "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" }
-            }
-          ]
+          }
         })}</script>
       </Helmet>
       <FAQSchema />

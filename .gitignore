@@ -1,0 +1,3 @@
+node_modules
+pnpm approve-builds
+cd artifacts/vaidevan && pnpm run build
